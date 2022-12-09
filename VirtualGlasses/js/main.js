@@ -47,25 +47,73 @@ const renderHTML = (data) => {
             <td>${product.price}</td>
             <td>${product.description}</td>
             <td>
-        
         </tr>`
     })
 
 }
 
+const tryOnGlasses = (virtualImg,src,brand,name,color,price,description) =>{
+    let avatar = getEle("avatar");
+    let info = getEle("glassesInfo");
+
+    let content="";
+    content+=`
+    <img src="${virtualImg}"/>
+    `;
+
+    let content2 ="";
+    content2 +=`
+    <h3><span style="text-transform: uppcase;">${brand}</span>
+    <span style="font-size:1.5rem;">- ${name}</span>
+    <span> (${color})</span></h3>
+    <p><span class="btn btn-danger">${price}</span>
+    <span class="text-success">Stoking</span>
+    </p>
+    <p>${description}</p>
+    
+    `
+    console.log(content);
+    avatar.innerHTML = content;
+    info.style.display="block";
+    info.innerHTML = content2;
+}
+
+window.tryOnGlasses=tryOnGlasses;
 const renderPic = (data) => {
     let content =``;
     if(data && data.length > 0) {
         data.forEach((product)=>{
             content +=`
             
-            <a href="#"><img style="display: flex; width:140px;margin-left:28px;margin-bottom:30px;" src="${product.virtualImg}"/></a>
-            
+            <a href="#">
+            <img class ="glassPicker" style="display: flex; width:140px;margin-left:28px;margin-bottom:30px;" onclick="tryOnGlasses('${product.virtualImg}','${product.src}','${product.brand}','${product.name}','${product.color}','${product.price}','${product.description}')" src="${product.virtualImg}"/>
+            </a>
             `;
         });
     getEle("vglassesList").innerHTML = content;
     }
 }
 
+
+
+
+// let glasses1 = document.getElementsByClassName("glassPicker");
+// let avatar = getEle("avatar");
+// console.log(glasses1);
+// for(let i = 0; i<glasses1.length;i++){
+//     // glasses1[i].addEventListener("click", function(O){
+//     //     changeGlass(dataGlasses[i],i)
+//     // })
+// }
+
+// // changeGlass = (o, e)=>{
+// //     content="";
+// //     content+=`
+// //     <img style="width:140px;" src="${glasses1[e]}"/>
+    
+// //     `
+// // }
+
+
 renderPic(dataGlasses);
-console.log(dataGlasses);
+// console.log(dataGlasses);
