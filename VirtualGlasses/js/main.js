@@ -58,7 +58,7 @@ const tryOnGlasses = (virtualImg,src,brand,name,color,price,description) =>{
 
     let content="";
     content+=`
-    <img src="${virtualImg}"/>
+    <img id="hinh" src="${virtualImg}"/>
     `;
 
     let content2 ="";
@@ -117,3 +117,14 @@ const renderPic = (data) => {
 
 renderPic(dataGlasses);
 // console.log(dataGlasses);
+
+const removeGlasses =(doi)=>{
+
+    if(doi == true){
+        getEle('hinh').style.display= "block";
+    } else{
+        getEle('hinh').style.display= "none";
+    }
+}
+
+window.removeGlasses = removeGlasses;
